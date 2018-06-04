@@ -1,0 +1,103 @@
+﻿body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00b7ff;
+}
+
+.rowMargin {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.right {
+    clear: right;
+    float: right;
+}
+
+.thumbnail {
+    box-shadow: 1px 1px 1px 1px #dbdbdb;
+    padding-bottom: 20px;
+    height: 70px;
+}
+
+    .thumbnail:hover {
+        box-shadow: 2px 2px 2px 2px #7f7f7f;
+    }
+
+    .thumbnail .caption {
+        text-align: center;
+        padding-top: 20px;
+        font-family: 'Comic Sans MS';
+    }
+
+.todoItem {
+    margin: 4px;
+}
+
+.sticky-note {
+    overflow: hidden;
+    text-decoration: none;
+    color: #000;
+    background: #afb;
+    display: block;
+    float: left;
+    margin: 10px;
+    border-color: #000;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+ ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+            li a, .dropbtn {
+                display: inline-block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                li a:hover, .dropdown:hover .dropbtn {
+                    background-color: red;
+                }
+
+            li.dropdown {
+                display: inline-block;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: lightcoral;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: lemonchiffon
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }

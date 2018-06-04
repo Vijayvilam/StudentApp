@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="" utf-8"">
+    <title>Node-Express Students List</title>
+    <link rel=" stylesheet" href="/stylesheets/studentsite.css">
+    <!--<link rel=" stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+    <style>
+    </style>
+</head>
+     <body>
+        <div class="container">
+            <div class="text-center" ng-app="stdApp" ng-controller="StdCtrl">
+                <!--  <h1>Node-Express Students List</h1> -->
+                <div class="col-md-12 control-group">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                          <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropbtn">Course</a>
+                            <div class="dropdown-content">
+                                <a href="#">SRMU</a>
+                                <ul>
+                                    <li>
+                                        <a href="#home">B.Tech</a><ul>
+                                            <li><a href="#home">First year</a></li>
+                                            <li><a href="#home">Second year</a></li>
+                                            <li><a href="#home">Third year</a></li>
+                                            <li><a href="#home">Fourth year</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <a href="#">EEC</a>
+                                <a href="#"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="text" style="width: 200px;" ng-model="newStudentText">
+                            <button id="btnAddTodo" class="btn" style="margin: 2px;" ng-click="addStd()" ng-disabled="!newStudentText">Add Student</button>
+                        </li>
+                        <li>
+                            <input type="text" style="width: 200px;" ng-model="Studentsearch">
+                            <button id="btnSearchTodo" class="btn" style="margin: 2px;" ng-click="searchStd()" ng-disabled="!Studentsearch">Search Student</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12 sticky-note">
+           <h3 class=" text-center">Students List</h3>
+           <table>
+               <tr class="col-md-12 rowmargin todoItem">
+                   <td width="100" align="left">NAME</td>
+                   <td width="100" align="left">ID No</td>
+                   <td width="100" align="left">Course</td>
+                   <td width="100" align="left">YEAR</td>
+                   <td width="100" align="left">CAMPUS</td>
+                   <td width="100" align="left">DATE PAID VAC</td>
+                   <td width="100" align="right">AMOUNT</td>
+               </tr>
+               <tr class="col-md-12 rowmargin todoItem" ng-repeat="stdent in students">
+                   <td width="100" align="left">{{stdent.std_name}} </td>
+                   <td width="100" align="left">{{stdent.std_id}} </td>
+                   <td width="100" align="left">{{stdent.std_course }}</td>
+                   <td width="100" align="left">{{stdent.std_year }}</td>
+                   <td width="100" align="left">{{stdent.std_college }}</td>
+                   <td width="100" align="left">{{stdent.Datepaid_vac }}</td>
+                   <td width="100" align="right">{{stdent.Amt }}</td>
+               </tr>
+           </table>
+       </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+        <script src="javascripts/StudentAct.js"></script>
+    </body>
+</html>
+
+
