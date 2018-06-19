@@ -4,52 +4,92 @@
 
     <meta charset="" utf-8"">
     <title>Node-Express Students List</title>
-    <link rel=" stylesheet" href="/stylesheets/studentsite.css">
+    <link rel=" stylesheet" href="/StudentApp/stylesheets/studentsite.css">
     <!--<link rel=" stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
     <style>
     </style>
 </head>
      <body>
-        <div class="container">
-            <div class="text-center" ng-app="stdApp" ng-controller="StdCtrl">
+            <div id="controller" text-center" ng-app="stdApp" ng-controller="StdCtrl">
                 <!--  <h1>Node-Express Students List</h1> -->
                 <div class="col-md-12 control-group">
                     <ul>
-                        <li><a href="#home">Home</a></li>
+                        <li><a  id="Home1" ng-click="stdapp.init()" href="">Home</a></li>
                           <li class="dropdown">
                             <a href="javascript:void(0)" class="dropbtn">Course</a>
                             <div class="dropdown-content">
-                                <a href="#">SRMU</a>
+                                <a href="">SRMU</a>
                                 <ul>
                                     <li>
-                                        <a href="#home">B.Tech</a><ul>
-                                            <li><a href="#home">First year</a></li>
-                                            <li><a href="#home">Second year</a></li>
-                                            <li><a href="#home">Third year</a></li>
-                                            <li><a href="#home">Fourth year</a></li>
+                                        <a href="">B.Tech,CSE</a><ul>
+                                            <li><a id="SRMULink1" ng-click="SearchCourse1()" href="">2018-2019</a></li>
+                                            <li><a href="#home">2017-2018</a></li>
+                                            <li><a href="#home">2016-2017</a></li>
+                                            <li><a href="#home">2015-2016</a></li>
                                         </ul>
                                     </li>
                                 </ul>
-                                <a href="#">EEC</a>
+                                <a href="">EEC</a>
+                                <ul>
+                                    <li>
+                                        <a href="">B.Tech,ECE</a><ul>
+                                            <li><a id="SRMULink1" ng-click="SearchCourse2()" href="">2018-2019</a></li>
+                                            <li><a href="#home">2017-2018</a></li>
+                                            <li><a href="#home">2016-2017</a></li>
+                                            <li><a href="#home">2015-2016</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                                 <a href="#"></a>
                             </div>
                         </li>
-                        <li>
-                            <input type="text" style="width: 200px;" ng-model="newStudentText">
-                            <button id="btnAddTodo" class="btn" style="margin: 2px;" ng-click="addStd()" ng-disabled="!newStudentText">Add Student</button>
-                        </li>
-                        <li>
-                            <input type="text" style="width: 200px;" ng-model="Studentsearch">
-                            <button id="btnSearchTodo" class="btn" style="margin: 2px;" ng-click="searchStd()" ng-disabled="!Studentsearch">Search Student</button>
-                        </li>
-                    </ul>
+                        </ul>
+
+                        <ul>
+                            <li>
+                                <input id="newstudentName" type="text" style="width: 150px;height:20px;" rows="5" cols="40" placeholder="{{StudentName}}" ng-model="newStudentName">
+                                <input id="newstudentId" type="text" style="width: 100px;height:20px;" rows="5" cols="40" placeholder="{{Student_Id}}" ng-model="newStudentId">
+                                <label style="color:indianred">Campus</label>
+                                <select ng-model="selectedCampus" ng-options="x for x in Campus"></select>
+                                <label style="color:indianred">Course&DEPT</label>
+                                <select ng-model="selectedCourse" ng-options="x for x in Courses"></select>
+                                <select ng-model="selectedDepartment" ng-options="x for x in Departments"></select>
+                                <label style="color:indianred">YEAR</label>
+                                <select ng-model="selectedYear" ng-options="x for x in Year"></select>                                
+                                </li>
+                            </ul>
+                           <ul>
+                               <li>
+                                   <label style="color:red;"> &nbsp &nbsp Date paid VAC  </label>
+                                   <input type="date" ng-model="DatePaidVAC">
+                                   <label style="color:indianred">Amount</label>
+                                   <select ng-model="selectedAmount" ng-options="x for x in Amount"></select>
+                                   <button id="btnAddTodo" size="5" class="btn" style="margin: 2px;" ng-click="addStd()" ng-disabled="!newStudentId">Add Student</button>
+                               </li>
+                            </ul>
+                           <ul>
+                               <li>
+                                  <p> Click <a href="/StudentApp/template">here</a> for an example template.</p>
+                                   <form action="/StudentApp/upload" method="POST" encType="multipart/form-data">
+                                       <input type="file" name="file" accept="*.csv" /><br /><br />
+                                       <input type="submit" value="Upload Student Details" />
+                                   </form>
+                               </li>
+                           </ul>
+                        <ul>
+                            <li>
+                                <input type="text" style="width: 150px;height:20px;" ng-model="Studentsearchname" placeholder="Enter Student Name">
+                                <input type="text" style="width: 100px;height:20px;" ng-model="Studentsearchid" placeholder="Enter Student Id">
+                                <button id="btnSearchTodo" class="btn" style="margin: 2px;" ng-click="searchStd()" ng-disabled="!Studentsearchid">Search Student</button>
+                            </li>
+                        </ul>                    
                 </div>
                 <div class="col-md-12 sticky-note">
            <h3 class=" text-center">Students List</h3>
            <table>
                <tr class="col-md-12 rowmargin todoItem">
-                   <td width="100" align="left">NAME</td>
                    <td width="100" align="left">ID No</td>
+                   <td width="100" align="left">Name</td>
                    <td width="100" align="left">Course</td>
                    <td width="100" align="left">YEAR</td>
                    <td width="100" align="left">CAMPUS</td>
@@ -57,20 +97,36 @@
                    <td width="100" align="right">AMOUNT</td>
                </tr>
                <tr class="col-md-12 rowmargin todoItem" ng-repeat="stdent in students">
-                   <td width="100" align="left">{{stdent.std_name}} </td>
-                   <td width="100" align="left">{{stdent.std_id}} </td>
-                   <td width="100" align="left">{{stdent.std_course }}</td>
-                   <td width="100" align="left">{{stdent.std_year }}</td>
-                   <td width="100" align="left">{{stdent.std_college }}</td>
-                   <td width="100" align="left">{{stdent.Datepaid_vac }}</td>
-                   <td width="100" align="right">{{stdent.Amt }}</td>
+                   <!--show-->
+                   <td width="100" align="left" ng-hide="edited === $index">{{stdent.std_id}} </td>
+                   <td width="100" align="left" ng-hide="edited === $index">{{stdent.std_name}} </td>
+                   <td width="100" align="left" ng-hide="edited === $index">{{stdent.std_course }}</td>
+                   <td width="100" align="left" ng-hide="edited === $index">{{stdent.std_year }}</td>
+                   <td width="100" align="left" ng-hide="edited === $index">{{stdent.std_college }}</td>
+                   <td width="100" align="left" ng-hide="edited === $index">{{stdent.Datepaid_vac }}</td>
+                   <td width="100" align="right" ng-hide="edited === $index">{{stdent.Amt }}</td>
+                   <td ng-hide="edited === $index">
+                       <button ng-click="edit($index)">Edit</button>
+                       <button ng-click="delete($index)">Detele</button>
+                   </td>
+                   <!--Edit-->
+                   <td width="100" align="left" ng-show="edited === $index"><input size="10" type="text" ng-model="editedModel.std_id" /></td>
+                   <td width="100" align="left" ng-show="edited === $index"><input size="10" type="text" ng-model="editedModel.std_name" /></td>
+                   <td width="100" align="left" ng-show="edited === $index"><input size="10" type="text" ng-model="editedModel.std_course" /></td>
+                   <td width="100" align="left" ng-show="edited === $index"><input size="10" type="text" ng-model="editedModel.std_year" /></td>
+                   <td width="100" align="left" ng-show="edited === $index"><input size="10" type="text" ng-model="editedModel.std_college" /></td>
+                   <td width="100" align="left" ng-show="edited === $index"><input size="10" type="date" ng-model="editedModel.Datepaid_vac" /></td>
+                   <td width="100" align="right" ng-show="edited === $index"><input size="10" type="text" ng-model="editedModel.Amt" /></td>
+                   <td ng-show="edited === $index">
+                       <button ng-click="finishEdit($index, editedModel)">Save</button>
+                       <button ng-click="delete($index)">Detele</button>
+                   </td>
                </tr>
            </table>
        </div>
             </div>
-        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
-        <script src="javascripts/StudentAct.js"></script>
+        <script src="/StudentApp/javascripts/StudentAct.js"></script>
     </body>
 </html>
 

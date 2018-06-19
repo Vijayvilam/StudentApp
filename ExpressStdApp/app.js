@@ -2,11 +2,13 @@
 var debug = require('debug');
 var express = require('express');
 var path = require('path');
-//var favicon = require('serve-favicon');
+
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var fileUpload = require('express-fileupload');
+var template = require('./template.js');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -21,20 +23,30 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/StudentApp', express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
     
 app.use('/', routes);
 app.use('/users', users);
-app.get('/', function (request, response) {
+/*
+app.get('/StudentApp', function (request, response) {
     response.sendfile("views/studentsList.html");
-});
-app.get('/api/students', mongoOps.fetch);
-app.post('/api/students', mongoOps.add);
+});*/
+app.get('/StudentApp/template', template.get);
+app.post('/StudentApp/upload', mongoOps.post);
+app.get('/StudentApp/api/students', mongoOps.fetch);
+app.post('/StudentApp/api/students', mongoOps.add);
+app.put('/StudentApp/api/students/update/:_id', mongoOps.update);
+app.delete('/StudentApp/api/students/delete/:_id', mongoOps.delete);
+app.get('/StudentApp/api/students/search/:std_id', mongoOps.searchId);
+app.get('/StudentApp/api/students/search/name/:std_id/:std_name', mongoOps.searchName);
+app.get('/StudentApp/api/students/search/course/:std_college/:std_course/:std_year', mongoOps.searchCourse);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
