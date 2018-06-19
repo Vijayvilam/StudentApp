@@ -1,5 +1,0 @@
-C:\Users\srm\source\repos\ExpressStdApp\ExpressStdApp\obj\Debug\ExpressStdApp.njsproj.CoreCompileInputs.cache
-C:\Users\srm\source\repos\ExpressStdApp\ExpressStdApp\bin\Microsoft.NodejsTools.WebRole.dll
-C:\Users\srm\source\repos\StudentApp\ExpressStdApp\obj\Debug\ExpressStdApp.njsproj.CoreCompileInputs.cache
-C:\Users\srm\source\repos\StudentApp\ExpressStdApp\bin\Microsoft.NodejsTools.WebRole.dll
-C:\Users\srm\source\repos\StudentApp\ExpressStdApp\obj\Debug\ExpressStdApp.njsprojResolveAssemblyReference.cache
